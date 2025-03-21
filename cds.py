@@ -109,7 +109,7 @@ class GenericCdsPricer(CdsPricer):
         coupon = coupon * yf
         rec = self.surve_curve.r if cds.r is None else cds.r
         loss = loss * (1 - rec)
-        annuity = coupon + acc_on_default if cds.pay_accrued else 0
+        annuity = coupon + (acc_on_default if cds.pay_accrued else 0)
         fixed = cds.coupon * annuity
         npv = loss - fixed
         par = loss/annuity
